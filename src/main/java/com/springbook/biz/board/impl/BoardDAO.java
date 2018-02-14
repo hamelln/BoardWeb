@@ -27,10 +27,7 @@ public class BoardDAO {
 	public  Connection getConnection() {
 		try {
 			Class.forName("org.h2.Driver");
-			System.out.println("x");
 			conn= DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
-			if(conn!=null)
-				System.out.println("성공");
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -10,7 +10,6 @@ public class JDBCUtil {
 		Connection conn=null;
 		try {
 			Class.forName("org.h2.Driver");
-			System.out.println("x");
 			conn= DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
 			if(conn!=null)
 				System.out.println("connection 성공");
