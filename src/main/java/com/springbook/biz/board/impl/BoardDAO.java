@@ -33,8 +33,10 @@ public class BoardDAO {
 	
 	public  Connection getConnection() {
 		try {
-			Class.forName("org.h2.Driver");
-			conn= DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			/*Class.forName("org.h2.Driver");
+			conn= DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");*/
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}

@@ -32,11 +32,14 @@ public class UserServiceClient {
 		vo.setName("홍길동");
 		vo.setRole("User");
 	*/	
+		System.out.print("id를 입력하세요:");
 		 vo.setId(scanner.next());
+		System.out.print("password를 입력하세요:");
 		 vo.setPassword(scanner.next());
+		 System.out.print("이름을 입력하세요:");
 		 vo.setName(scanner.next());
-		 vo.setRole(scanner.next());
-		 
+		 vo.setRole("User");
+	
 		user = userService.setUser(vo);
 		
 		System.out.println(user);

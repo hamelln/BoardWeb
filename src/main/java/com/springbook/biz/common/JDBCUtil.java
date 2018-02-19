@@ -9,8 +9,10 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		Connection conn=null;
 		try {
-			Class.forName("org.h2.Driver");
-			conn= DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");
+			/*Class.forName("org.h2.Driver");
+			conn= DriverManager.getConnection("jdbc:h2:tcp://localhost/~/test", "sa", "sa");*/
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			conn= DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
 			if(conn!=null)
 				System.out.println("connection 성공");
 		}catch(Exception e) {
