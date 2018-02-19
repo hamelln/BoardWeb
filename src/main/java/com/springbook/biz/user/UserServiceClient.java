@@ -9,7 +9,7 @@ public class UserServiceClient {
 	public static void main(String[] args) {
 		//1.Spring 컨테이너 구동
 		AbstractApplicationContext container =
-				new GenericXmlApplicationContext("annotationContext.xml");
+				new GenericXmlApplicationContext("annotationAopContext.xml");
 		//2.Spring 컨테이너로부터 UserServieImpl 객체 lookup
 		UserService userService =
 				(UserService)container.getBean("userService");
@@ -26,23 +26,22 @@ public class UserServiceClient {
 			System.out.println("로그인 실패");
 		
 		//4. 사용자 추가 테스트
-		Scanner scanner = new Scanner(System.in);
-		/*vo.setId("hong");
+		//Scanner scanner = new Scanner(System.in);
+		/*vo.setId(null);
 		vo.setPassword("1234");
 		vo.setName("홍길동");
-		vo.setRole("User");
-	*/	
-		System.out.print("id를 입력하세요:");
+		vo.setRole("User");*/
+	
+		/*System.out.print("id를 입력하세요:");
 		 vo.setId(scanner.next());
 		System.out.print("password를 입력하세요:");
 		 vo.setPassword(scanner.next());
 		 System.out.print("이름을 입력하세요:");
 		 vo.setName(scanner.next());
-		 vo.setRole("User");
-	
-		user = userService.setUser(vo);
-		
-		System.out.println(user);
+		 vo.setRole("User");*/
+
+		 //user = userService.setUser(vo);
+		  System.out.println(user);
 		
 		
 		
