@@ -12,7 +12,8 @@ import org.springframework.stereotype.Repository;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.common.JDBCUtil;
 
-@Repository("boardDao")
+//BoardDAOSpring을 사용하기위해 @Repository 주석처리
+//@Repository("boardDao")
 public class BoardDAO {
 	//JDBC관련 변수
 	private Connection conn=null;

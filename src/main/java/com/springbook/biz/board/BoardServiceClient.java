@@ -8,7 +8,8 @@ import org.springframework.context.support.GenericXmlApplicationContext;
 public class BoardServiceClient {
 	public static void main(String[] args) {
 	AbstractApplicationContext container
-	 = new GenericXmlApplicationContext("annotationContext.xml");
+	= new GenericXmlApplicationContext("annotationAopContext.xml");
+	/* = new GenericXmlApplicationContext("annotationContext.xml");*/
 	/*= new GenericXmlApplicationContext("aopContext.xml");*/
 	
 	BoardService boardService 
