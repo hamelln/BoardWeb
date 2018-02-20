@@ -21,6 +21,7 @@ public class BoardServiceClient {
 	vo.setWriter("홍길동");
 	vo.setContent("임시내용............");
 	boardService.insertBoard(vo);
+	
 	//글 목록 검색 기능 테스트
 	List<BoardVO> boardList = boardService.getBoardList(vo);
 	for(BoardVO b:boardList) {

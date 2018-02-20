@@ -70,5 +70,4 @@ public class BoardDAOSpring2/* extends JdbcDaoSupport*/{
 		 result = jdbcTemplate.update(BOARD_DELETE, seq);
 		return result;
 	}
-	
 }
