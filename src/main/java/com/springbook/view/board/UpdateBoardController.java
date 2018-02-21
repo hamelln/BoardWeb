@@ -6,19 +6,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-import com.springbook.view.controller.Controller;
 
-public class updateBoardController implements Controller{
+public class UpdateBoardController implements Controller{
 	@Override
-	public String handleRequest(HttpServletRequest request, 
+	public ModelAndView handleRequest(HttpServletRequest request, 
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		 String id = (String)session.getAttribute("id");
 		 String view ="";
+		 ModelAndView mav = new ModelAndView();
 	        if(id==null|"".equals(id))
-	       	 	view = "login.do";
+	       	 	mav.setViewName("login.do");
 	        else {   
 	        	try {
 	        		System.out.println("글 수정 처리");
@@ -37,11 +40,11 @@ public class updateBoardController implements Controller{
 		    	BoardDAO dao = new BoardDAO();
 		    	dao.updateBoard(vo);
 		    	//3. 화면 이동
-		    	view = "getBoardList.do";
+		    	mav.setViewName("getBoardList.do");
 		    		
 	        	}catch(Exception e) {System.out.println(e.getMessage());}
 	        }  
-    	return view;
+    	return mav;
 	}
 
 }

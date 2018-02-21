@@ -6,18 +6,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.springbook.biz.board.impl.BoardDAO;
-import com.springbook.view.controller.Controller;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
 
-public class deleteBoardController implements Controller{
+import com.springbook.biz.board.impl.BoardDAO;
+
+public class DeleteBoardController implements Controller{
 	@Override
-	public String handleRequest(HttpServletRequest request, 
+	public ModelAndView handleRequest(HttpServletRequest request, 
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		 String id = (String)session.getAttribute("id");
 		 String view ="";
+		 ModelAndView mav = new ModelAndView();
 	        if(id==null|"".equals(id))
-	       	 	view = "login.do";
+	       	 	mav.setViewName("login.do");
 	        else {   
 	        	try {
 	        		System.out.println("글 삭제 처리");
@@ -25,7 +28,7 @@ public class deleteBoardController implements Controller{
 	    	    	BoardDAO dao = new BoardDAO();
 	    	    	int result = dao.deleteBoard(Integer.parseInt(seq));
 	    	    	if(result>0)
-	    	    		view = "getBoardList.do";
+	    	    		mav.setViewName("getBoardList.do");
 	    	    	else {
 	    	    		PrintWriter out = response.getWriter();
 	    	    		out.print("<script>");
@@ -36,7 +39,7 @@ public class deleteBoardController implements Controller{
 		    		
 	        	}catch(Exception e) {System.out.println(e.getMessage());}
 	        }  
-    	return view;
+    	return mav;
 	}
 
 }

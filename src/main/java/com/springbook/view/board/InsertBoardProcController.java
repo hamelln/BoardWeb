@@ -1,24 +1,25 @@
 package com.springbook.view.board;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.Controller;
+
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
-import com.springbook.view.controller.Controller;
 
-public class inertBoardProcController implements Controller{
+public class InsertBoardProcController implements Controller{
 	@Override
-	public String handleRequest(HttpServletRequest request, 
+	public ModelAndView handleRequest(HttpServletRequest request, 
 			HttpServletResponse response) {
 		HttpSession session = request.getSession();
 		 String id = (String)session.getAttribute("id");
+		 ModelAndView mav = new ModelAndView();
 		 String view ="";
 	        if(id==null|"".equals(id))
-	       	 	view = "login.do";
+	       	 	mav.setViewName("login.do");
 	        else {   
 	        	try {
 	        	System.out.println("글 등록 처리");
@@ -39,10 +40,10 @@ public class inertBoardProcController implements Controller{
 		    	
 		    	//3. 화면이동
 		    	
-	        	view = "getBoardList.do";	
+	        	mav.setViewName("getBoardList.do");	
 	        	}catch(Exception e) {System.out.println(e.getMessage());}
 	        }  
-    	return view;
+    	return mav;
 	}
 
 }
