@@ -2,7 +2,7 @@
 <%@page import="com.springbook.biz.board.impl.BoardDAO"%>
 <%@page import="com.springbook.biz.board.BoardVO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%
+<%-- <%
 //1. 파라미터 받기
 	request.setCharacterEncoding("utf-8");
 	String title = request.getParameter("title");
@@ -24,7 +24,7 @@
 	//3. 화면이동
 	response.sendRedirect("getBoardList.jsp");
 	
-%>
+%> --%>
 <html>
 <head>
 <title>Insert title here</title>

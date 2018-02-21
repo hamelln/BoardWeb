@@ -2,7 +2,7 @@
 <%@page import="java.util.List"%>
 <%@page import="com.springbook.biz.board.BoardVO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
-<%
+<%-- <%
 	 String id = (String)session.getAttribute("id");
      if(id==null|"".equals(id))
     	 response.sendRedirect("login.jsp");
@@ -11,6 +11,9 @@
 	BoardDAO dao = new BoardDAO();
 	BoardVO vo = new BoardVO();
 	List<BoardVO> list = dao.getBoardList(vo);
+%> --%>
+<%
+List<BoardVO> list = (List)session.getAttribute("boardList");
 %>
 <html><head><title>boardList</title></head>
 <body>
@@ -25,7 +28,8 @@
   %>
   <tr>
   <td><%=list.get(i).getSeq()%></td>
-  <td><a href="getBoard.jsp?seq=<%=list.get(i).getSeq()%>"><%=list.get(i).getTitle()%></a></td>
+  <td><a href="getBoard.do?seq=<%=list.get(i).getSeq()%>"><%=list.get(i).getTitle()%></a></td>
+<%--   <td><a href="getBoard.jsp?seq=<%=list.get(i).getSeq()%>"><%=list.get(i).getTitle()%></a></td> --%>
   <td><%=list.get(i).getWriter()%></td>
   <td><%=list.get(i).getRegDate()%></td>
   <td><%=list.get(i).getCnt()%></td>
@@ -34,6 +38,6 @@
  %> 
   </table>
   <br>
-  <a href ="insertBoard.jsp">새글등록</a>
+  <a href ="insertBoard.do">새글등록</a>
 </body>
 </html>

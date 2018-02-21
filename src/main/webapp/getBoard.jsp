@@ -1,18 +1,22 @@
 <%@page import="com.springbook.biz.board.impl.BoardDAO"%>
 <%@page import="com.springbook.biz.board.BoardVO"%>
 <%@ page contentType="text/html; charset=UTF-8" %>
-<%
+<%-- <%
 	String seq = request.getParameter("seq");
 	BoardVO vo = new BoardVO();
 	vo.setSeq(Integer.parseInt(seq));//순번 입력
 	BoardDAO dao = new BoardDAO();
 	vo = dao.getBoard(vo.getSeq());//객체 저장
+%> --%>
+<% 
+BoardVO vo = new BoardVO();
+vo = (BoardVO)session.getAttribute("board");
 %>
 <html><head><title>상세보기</title>
 </head><body>
 <a href="logout_proc.jsp">Log-out</a>
 <hr>
-<form action="updateBoard_proc.jsp" method="post">
+<form action="updateBoard.do" method="post">
 <input type="hidden" name="seq" value="<%=vo.getSeq()%>">
 	<table border=1>
 	<tr>
@@ -42,9 +46,9 @@
 	</table>
 </form>
 <hr>
-<a href="insertBoard.jsp">글등록</a>&nbsp;&nbsp;&nbsp;
-<a href="deleteBoard_proc.jsp?seq=<%=vo.getSeq()%>">글 삭제</a>&nbsp;&nbsp;&nbsp;
-<a href="getBoardList.jsp">글목록</a>
+<a href="insertBoard.do">글등록</a>&nbsp;&nbsp;&nbsp;
+<a href="deleteBoard.do?seq=<%=vo.getSeq()%>">글 삭제</a>&nbsp;&nbsp;&nbsp;
+<a href="getBoardList.do">글목록</a>
 
 </body>
 </html>

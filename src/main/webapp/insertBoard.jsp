@@ -15,7 +15,7 @@
 <h1>글 등록</h1>
 <a href="logout_proc.jsp">Log-out</a>
 <hr>
-<form action="insertBoard_proc.jsp" method="post">
+<form action="insertBoardProc.do" method="post">
 <table border="1" >
 <tr data-role="fieldcontain">
 <td>제목</td>
