@@ -18,7 +18,7 @@ List<BoardVO> list = (List)session.getAttribute("boardList");
 <html><head><title>boardList</title></head>
 <body>
   <h1>BoardList</h1>
-  <h3>로그아웃 <a href="logout_proc.jsp">Log_out</a></h3>
+  <h3>로그아웃 <a href="logout.do">Log_out</a></h3>
   <table border="1" >
   <tr>
   <th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>

@@ -14,7 +14,7 @@ vo = (BoardVO)session.getAttribute("board");
 %>
 <html><head><title>상세보기</title>
 </head><body>
-<a href="logout_proc.jsp">Log-out</a>
+<a href="logout.do">Log-out</a>
 <hr>
 <form action="updateBoard.do" method="post">
 <input type="hidden" name="seq" value="<%=vo.getSeq()%>">
