@@ -17,7 +17,7 @@ public class LogoutController implements Controller{
 		 String view ="";
 		 ModelAndView mav = new ModelAndView();
 	        if(id==null|"".equals(id))
-	       	 	mav.setViewName("login.do");
+	       	 	mav.setViewName("redirct:login.do");
 	        else {   
 	        	try {
 	        		System.out.println("로그아웃 처리");

@@ -23,9 +23,17 @@
 	<bean id="login" class="com.springbook.view.user.LoginController"></bean>
 	<bean id="getBoardList" class="com.springbook.view.board.GetBoardListController"></bean>
 	<bean id="getBoard" class="com.springbook.view.board.GetBoardController"></bean>
-	<bean id="insertBorad" class="com.springbook.view.board.InsertBoardController"></bean>
+	<bean id="insertBoard" class="com.springbook.view.board.InsertBoardController"></bean>
 	<bean id="insertBoardPro" class="com.springbook.view.board.InsertBoardProcController"></bean>
-	<bean id="udateBoard" class="com.springbook.view.board.UpdateBoardController"></bean>
+	<bean id="updateBoard" class="com.springbook.view.board.UpdateBoardController"></bean>
 	<bean id="deleteBoard" class="com.springbook.view.board.DeleteBoardController"></bean>
 	<bean id="logout" class="com.springbook.view.board.LogoutController"></bean>
+
+	<!-- View Resolver  설정 -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/board/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+
 </beans>

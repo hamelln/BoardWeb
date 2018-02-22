@@ -22,7 +22,7 @@ public class GetBoardListController implements Controller{
    	   String view ="";
     	ModelAndView mav = new ModelAndView();
         if(id==null|"".equals(id))
-       	 mav.setViewName("login.do");
+       	 mav.setViewName("redirect:login.do");
         else {    
    	//1.Board 정보 출력
    	BoardDAO dao = new BoardDAO();
@@ -31,6 +31,7 @@ public class GetBoardListController implements Controller{
   
    	mav.addObject("boardList", list);
    	mav.setViewName("getBoardList");
+   	System.out.println("viewName:"+"getBoardList");
 
         }
     	return mav;

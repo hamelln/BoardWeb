@@ -20,7 +20,7 @@ public class DeleteBoardController implements Controller{
 		 String view ="";
 		 ModelAndView mav = new ModelAndView();
 	        if(id==null|"".equals(id))
-	       	 	mav.setViewName("login.do");
+	       	 	mav.setViewName("redirect:login.do");
 	        else {   
 	        	try {
 	        		System.out.println("글 삭제 처리");
@@ -28,7 +28,7 @@ public class DeleteBoardController implements Controller{
 	    	    	BoardDAO dao = new BoardDAO();
 	    	    	int result = dao.deleteBoard(Integer.parseInt(seq));
 	    	    	if(result>0)
-	    	    		mav.setViewName("getBoardList.do");
+	    	    		mav.setViewName("redirect:getBoardList.do");
 	    	    	else {
 	    	    		PrintWriter out = response.getWriter();
 	    	    		out.print("<script>");

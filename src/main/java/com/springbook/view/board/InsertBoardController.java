@@ -20,7 +20,7 @@ public class InsertBoardController implements Controller{
 		 String id = (String)session.getAttribute("id");
 		 ModelAndView mav = new ModelAndView();
 	        if(id==null|"".equals(id))
-	       	 	mav.setViewName("login.do");
+	       	 	mav.setViewName("redirect:login.do");
 	        else    
 	        	mav.setViewName("insertBoard");	
 	        

@@ -34,10 +34,10 @@ public class LoginController implements Controller{
     	if(user2!=null){
     		session.setAttribute("id", user2.getId());
     		//return "getBoardList.do";
-    		mav.setViewName("getBoardList.do");
+    		mav.setViewName("redirect:getBoardList.do");
     	}
     	else
-    		mav.setViewName("login.jsp");
+    		mav.setViewName("login");
     		//return "login";
     	return mav;
 	}

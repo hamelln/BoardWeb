@@ -40,7 +40,7 @@ public class InsertBoardProcController implements Controller{
 		    	
 		    	//3. 화면이동
 		    	
-	        	mav.setViewName("getBoardList.do");	
+	        	mav.setViewName("redirect:getBoardList.do");	
 	        	}catch(Exception e) {System.out.println(e.getMessage());}
 	        }  
     	return mav;

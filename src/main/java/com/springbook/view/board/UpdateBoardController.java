@@ -21,7 +21,7 @@ public class UpdateBoardController implements Controller{
 		 String view ="";
 		 ModelAndView mav = new ModelAndView();
 	        if(id==null|"".equals(id))
-	       	 	mav.setViewName("login.do");
+	       	 	mav.setViewName("redirect:login.do");
 	        else {   
 	        	try {
 	        		System.out.println("글 수정 처리");
@@ -40,7 +40,7 @@ public class UpdateBoardController implements Controller{
 		    	BoardDAO dao = new BoardDAO();
 		    	dao.updateBoard(vo);
 		    	//3. 화면 이동
-		    	mav.setViewName("getBoardList.do");
+		    	mav.setViewName("redirect:getBoardList.do");
 		    		
 	        	}catch(Exception e) {System.out.println(e.getMessage());}
 	        }  
