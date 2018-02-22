@@ -6,16 +6,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
-public class GetBoardListController implements Controller{
-	@Override
-	public ModelAndView handleRequest(HttpServletRequest request, 
-			HttpServletResponse response) {
+@Controller
+public class GetBoardListController /*implements Controller*/{
+	
+	/*public ModelAndView handleRequest(HttpServletRequest request, 
+			HttpServletResponse response) {*/
+	@RequestMapping(value="/getBoardList.do")
+	public ModelAndView getBoardList(HttpServletRequest request) {
 		System.out.println("글 목록 검색 처리");
 		HttpSession session = request.getSession();
    	  String id = (String)session.getAttribute("id");
@@ -30,7 +34,7 @@ public class GetBoardListController implements Controller{
    	List<BoardVO> list = dao.getBoardList(vo);
   
    	mav.addObject("boardList", list);
-   	mav.setViewName("getBoardList");
+   	mav.setViewName("getBoardList.jsp");
    	System.out.println("viewName:"+"getBoardList");
 
         }

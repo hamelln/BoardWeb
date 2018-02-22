@@ -4,16 +4,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
-public class InsertBoardProcController implements Controller{
-	@Override
+@Controller
+public class InsertBoardProcController /*implements Controller*/{
+	/*@Override
 	public ModelAndView handleRequest(HttpServletRequest request, 
-			HttpServletResponse response) {
+			HttpServletResponse response) {*/
+	@RequestMapping(value="/insertBoardProc.do")
+	public ModelAndView insertBoardProc(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		 String id = (String)session.getAttribute("id");
 		 ModelAndView mav = new ModelAndView();
@@ -39,11 +43,15 @@ public class InsertBoardProcController implements Controller{
 		    	dao.insertBoard(vo);
 		    	
 		    	//3. 화면이동
-		    	
+/*		    	
 	        	mav.setViewName("redirect:getBoardList.do");	
 	        	}catch(Exception e) {System.out.println(e.getMessage());}
 	        }  
-    	return mav;
-	}
+    	return mav;*/
+		    	mav.setViewName("redirect:getBoardList.do");
+	        	}catch(Exception e) {System.out.println(e.getMessage());}
 
+	        }
+        	return mav;
+	}
 }

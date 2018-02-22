@@ -1,20 +1,23 @@
 package com.springbook.view.board;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
 
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
-public class GetBoardController implements Controller {
-	@Override
+@Controller
+public class GetBoardController/* implements Controller*/ {
+	/*@Override
 	public ModelAndView handleRequest(HttpServletRequest request, HttpServletResponse response) {
+	*/	
+	@RequestMapping("/getBoard.do")
+	public ModelAndView getBoard(HttpServletRequest request) {	
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String id = (String) session.getAttribute("id");
@@ -31,7 +34,7 @@ public class GetBoardController implements Controller {
 			vo = dao.getBoard(vo.getSeq());// 객체 저장
 			session.setAttribute("board", vo);
 
-			mav.setViewName("getBoard");
+			mav.setViewName("getBoard.jsp");
 		}
 		return mav;
 	}

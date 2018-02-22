@@ -4,16 +4,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.Controller;
+
 import com.springbook.biz.user.UserVO;
 import com.springbook.biz.user.impl.UserDAO;
 
-
-public class LoginController implements Controller{
-	@Override
+@Controller
+public class LoginController /*implements Controller*/{
+	/*@Override
 	public ModelAndView handleRequest(HttpServletRequest request,
-			HttpServletResponse response) {
+			HttpServletResponse response) {*/
+	@RequestMapping("/login.do")
+	public ModelAndView login(HttpServletRequest request) {
 		System.out.println("로그인 처리");
     	//1.사용자 정보
     	String id = request.getParameter("id");
@@ -37,7 +41,7 @@ public class LoginController implements Controller{
     		mav.setViewName("redirect:getBoardList.do");
     	}
     	else
-    		mav.setViewName("login");
+    		mav.setViewName("login.jsp");
     		//return "login";
     	return mav;
 	}
