@@ -19,9 +19,25 @@ List<BoardVO> list = (List)session.getAttribute("boardList");
 %> --%>
 <html><head><title>boardList</title></head>
 <body>
-  <h1>BoardList</h1>
-  <h3>로그아웃 <a href="logout.do">Log_out</a></h3>
-  <table border="1" >
+  <h1>게시글 목록</h1>
+  <h3>${userName}님! 게시판에 오신걸 환영합니다....<a href="logout.do">Log_out</a></h3>
+<form action="getBoardList.do" method="post"> 
+	<table border="1">
+	<tr>
+		<td align="center">
+		<select name="searchCondition">
+			<c:forEach items="${conditionMap}" var="option">
+				<option value="${option.value}">${option.key}
+			</c:forEach>
+		</select>
+		<input type="text" name="searchKeyword">
+		<input type="submit" value="검색">
+		</td>
+	</tr>
+	</table>
+</form> 
+<!--검색 종료  -->
+  <table border="1" >  
   <tr>
   <th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>
   </tr>
@@ -48,7 +64,7 @@ List<BoardVO> list = (List)session.getAttribute("boardList");
   <td>${l.cnt}</td>
  </tr>
  </c:forEach>
-   </table>
+   </table>  
   <br>
   <a href ="insertBoard.do">새글등록</a>
 </body>

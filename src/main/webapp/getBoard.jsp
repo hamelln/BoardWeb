@@ -26,7 +26,7 @@ vo = (BoardVO)session.getAttribute("board");
 	</tr>
 	<tr>
 		<td>작성자</td>
-		<td>${board.writer}</td>
+		<td><input type="text" name="writer" value="${board.writer}"></td>
 	</tr>
 	<tr>
 		<td>내용</td>

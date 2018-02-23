@@ -26,13 +26,22 @@ public class BoardDAO {
 	private final String BOARD_LIST 
 	        ="select * from board3 order by seq desc";
 	private final String BOARD_UPDATE
-	        ="update board3 set title=?,content=? where seq=?";
+	        ="update board3 set writer=?,title=?,content=? where seq=?";
 	private final String BOARD_GET
 	        = "select * from board3 where seq=?";
 	private final String BOARD_DELETE
 	        = "delete from board3 where seq=?";
 	private final String BOARD_CNTUPDATE
-	        = "update board3 set cnt=nvl(cnt,0)+1 where seq=?";
+	        = "update board3 set cnt=nvl(cnt,0)+1 where seq=?";	
+	//Title
+	private final String BOARD_LIST_T
+    ="select * from board3 where title like '%'||?||'%' order by seq desc";
+	//Content
+	private final String BOARD_LIST_C
+	="select * from board3 where content like '%'||?||'%' order by seq desc";
+	//ALL
+	private final String BOARD_LIST_A
+	="select * from board3 where title like '%'||?||'%' or content like '%'||?||'%' order by seq desc";
 	
 	public  Connection getConnection() {
 		try {
@@ -88,6 +97,42 @@ public class BoardDAO {
 		}
 		return list;
 	}
+	//검색조건 처리
+	public List<BoardVO> getBoardList(String condition,String keyword) {
+		List<BoardVO> list = new ArrayList<>();
+	 try {
+			conn=getConnection();		
+	
+		if(condition.equals("TITLE")) {
+		    pstmt = conn.prepareStatement(BOARD_LIST_T);
+	    pstmt.setString(1, keyword);
+		  } 
+		else if(condition.equals("CONTENT")) {
+			pstmt = conn.prepareStatement(BOARD_LIST_C);
+			pstmt.setString(1, keyword); 
+		}else 
+		{   
+			pstmt = conn.prepareStatement(BOARD_LIST_A);
+			pstmt.setString(1, keyword);
+			pstmt.setString(2, keyword);
+		}
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				int i=0;
+				BoardVO board = new BoardVO();
+				board.setSeq(rs.getInt(++i));
+				board.setTitle(rs.getString(++i));
+				board.setWriter(rs.getString(++i));
+				board.setContent(rs.getString(++i));
+				board.setRegDate(rs.getDate(++i));
+				board.setCnt(rs.getInt(++i));
+				list.add(board);
+			}
+		}catch(Exception e) {System.out.println(e.getMessage());
+		}finally {	
+		}
+		return list;
+	}
 	//BOARD수정
 	public void updateBoard(BoardVO vo) {
 		Connection conn=null;
@@ -96,6 +141,7 @@ public class BoardDAO {
 			if(conn!=null) {
 			pstmt = conn.prepareStatement(BOARD_UPDATE);
 			int i=0;
+			pstmt.setString(++i,vo.getWriter());//작성자 수정용으로 추가
 			pstmt.setString(++i,vo.getTitle());
 			pstmt.setString(++i,vo.getContent());
 			pstmt.setInt(++i, vo.getSeq());

@@ -23,7 +23,7 @@
 </tr>
 <tr data-role="fieldcontain">
 <td>작성자</td>
-<td><input type="text" name="writer"></td>
+<td><input type="text" name="writer" value="${userName}" readonly="readonly"></td>
 </tr>
 <tr data-role="fieldcontain">
 <td>내용</td>

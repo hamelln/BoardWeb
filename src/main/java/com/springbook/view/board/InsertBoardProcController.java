@@ -11,7 +11,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
 
-@Controller
+//@Controller
 public class InsertBoardProcController /*implements Controller*/{
 	/*@Override
 	public ModelAndView handleRequest(HttpServletRequest request, 
