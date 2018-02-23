@@ -40,6 +40,7 @@ vo = (BoardVO)session.getAttribute("board");
 		<td>조회수</td>
 		<td>${board.cnt}</td>
 	</tr>
+	
 	<tr>
 	<td colspan="2" align="center">
 	 <input type="submit" value="글 수정"/>

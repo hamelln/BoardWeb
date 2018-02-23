@@ -1,5 +1,6 @@
 package com.springbook.view.board;
 
+import java.io.File;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
@@ -14,8 +15,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.springbook.biz.board.BoardService;
@@ -67,8 +68,16 @@ public class BoardController {
 	        else {   
 	        	try {
 	        	System.out.println("글 등록 처리");
-		    	//2.DB연동 처리
-	      	   boardService.insertBoard(vo);//boardService 등록
+		    	//파일 업로드 처리
+	        	MultipartFile uploadFile = vo.getUploadFile();
+	        	String path = "C:/upLoads/";
+	        	if(!uploadFile.isEmpty()) {
+	        		String fileName = uploadFile.getOriginalFilename();
+	        		uploadFile.transferTo(new File(path+fileName));
+	        		vo.setFiles(path+fileName);
+	        	}
+	        	//2.DB연동 처리
+	      	    boardService.insertBoard(vo);//boardService 등록
 		    	view = "redirect:getBoardList.do";
 	        	}catch(Exception e) {System.out.println(e.getMessage());}
 

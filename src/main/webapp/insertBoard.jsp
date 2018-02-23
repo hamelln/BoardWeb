@@ -15,11 +15,17 @@
 <h1>글 등록</h1>
 <a href="logout.do">Log-out</a>
 <hr>
-<form action="insertBoardProc.do" method="post">
+<form action="insertBoardProc.do" method="post" enctype="multipart/form-data">
 <table border="1" >
 <tr data-role="fieldcontain">
 <td>제목</td>
 <td ><input type="text" name="title"></td>
+</tr>
+<tr>
+<td>업로드</td>
+<td>
+<input type="file" name="uploadFile">
+</td>
 </tr>
 <tr data-role="fieldcontain">
 <td>작성자</td>

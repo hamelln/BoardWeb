@@ -26,8 +26,8 @@ public class BoardDAOSpringOracle/* extends JdbcDaoSupport*/{
 	private ResultSet rs = null;
 	//sql문
 	private final String BOARD_INSERT 
-	        ="insert into board3(seq,title,writer,content)"
-			+ " values((select nvl(max(seq),0)+1 from board3),?,?,?)";
+	        ="insert into board3(seq,title,writer,content,files)"
+			+ " values((select nvl(max(seq),0)+1 from board3),?,?,?,?)";
 	private final String BOARD_LIST 
 	        ="select * from board3 order by seq desc";
 	private final String BOARD_UPDATE
@@ -41,7 +41,7 @@ public class BoardDAOSpringOracle/* extends JdbcDaoSupport*/{
 	//글등록
 	public void insertBoard(BoardVO vo) {
 		 System.out.println("===> Spring insertBoard() 기능 처리");
-		 jdbcTemplate.update(BOARD_INSERT,vo.getTitle(),vo.getWriter(),vo.getContent());
+		 jdbcTemplate.update(BOARD_INSERT,vo.getTitle(),vo.getWriter(),vo.getContent(),vo.getFiles());
 	}
 	//글 목록 리스트
 	public List<BoardVO> getBoardList(BoardVO vo) {
