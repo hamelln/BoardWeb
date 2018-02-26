@@ -96,6 +96,14 @@ public class BoardController {
 	        else {   
 	        	try {
 	        		System.out.println("글 수정 처리");
+	        		//파일 업로드 처리
+		        	MultipartFile uploadFile = vo.getUploadFile();
+		        	String path = "C:/upLoads/";
+		            if(!uploadFile.isEmpty()) {
+		        		String fileName = uploadFile.getOriginalFilename();
+		        		uploadFile.transferTo(new File(path+fileName));
+		        		vo.setFiles(path+fileName);
+		        	}
 		    	//2. DB연동처리
 		    	boardService.updateBoard(vo);
 		    	//3. 화면 이동

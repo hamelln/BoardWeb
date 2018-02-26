@@ -31,7 +31,7 @@ public class BoardDAOSpringOracle/* extends JdbcDaoSupport*/{
 	private final String BOARD_LIST 
 	        ="select * from board3 order by seq desc";
 	private final String BOARD_UPDATE
-	        ="update board3 set title=?,content=? where seq=?";
+	        ="update board3 set title=?,content=?,files=? where seq=?";
 	private final String BOARD_GET
 	        = "select * from board3 where seq=?";
 	private final String BOARD_DELETE
@@ -53,7 +53,7 @@ public class BoardDAOSpringOracle/* extends JdbcDaoSupport*/{
 	//BOARD수정
 	public void updateBoard(BoardVO vo) {
 		System.out.println("===> Spring updateBoard() 기능 처리");
-		jdbcTemplate.update(BOARD_UPDATE,vo.getTitle(),vo.getContent(),vo.getSeq());
+		jdbcTemplate.update(BOARD_UPDATE,vo.getTitle(),vo.getContent(),vo.getFiles(),vo.getSeq());
 	}
 	//상세정보
 	public BoardVO getBoard(int seq) {

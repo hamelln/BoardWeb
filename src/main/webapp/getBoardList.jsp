@@ -3,24 +3,12 @@
 <%@page import="com.springbook.biz.board.BoardVO"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 
-<%-- <%
-	 String id = (String)session.getAttribute("id");
-     if(id==null|"".equals(id))
-    	 response.sendRedirect("login.jsp");
-     
-	//1.Board 정보 출력
-	BoardDAO dao = new BoardDAO();
-	BoardVO vo = new BoardVO();
-	List<BoardVO> list = dao.getBoardList(vo);
-%> --%>
-<%-- <%
-List<BoardVO> list = (List)session.getAttribute("boardList");
-%> --%>
-<html><head><title>boardList</title></head>
+<html><head><title><spring:message code="message.board.list.mainTitle"/></title></head>
 <body>
-  <h1>게시글 목록</h1>
-  <h3>${userName}님! 게시판에 오신걸 환영합니다....<a href="logout.do">Log_out</a></h3>
+  <h1><spring:message code="message.board.list.mainTitle"/></h1>
+  <h3>${userName}<spring:message code="message.board.list.welcomeMsg"/><a href="logout.do">Log_out</a></h3>
 <form action="getBoardList.do" method="post"> 
 	<table border="1">
 	<tr>
@@ -31,7 +19,7 @@ List<BoardVO> list = (List)session.getAttribute("boardList");
 			</c:forEach>
 		</select>
 		<input type="text" name="searchKeyword">
-		<input type="submit" value="검색">
+		<input type="submit" value="<spring:message code="message.board.list.search.condition.btn"/>"/>
 		</td>
 	</tr>
 	</table>
@@ -39,22 +27,13 @@ List<BoardVO> list = (List)session.getAttribute("boardList");
 <!--검색 종료  -->
   <table border="1" >  
   <tr>
-  <th>번호</th><th>제목</th><th>작성자</th><th>등록일</th><th>조회수</th>
+  <th><spring:message code="message.board.list.table.head.seq"/></th>
+  <th><spring:message code="message.board.list.table.head.title"/></th>
+  <th><spring:message code="message.board.list.table.head.writer"/></th>
+  <th><spring:message code="message.board.list.table.head.regDate"/></th>
+  <th><spring:message code="message.board.list.table.head.cnt"/></th>
   </tr>
- <%-- <%
-  for(int i=0;i<list.size();i++){
-  %>
-  <tr>
-  <td><%=list.get(i).getSeq()%></td>
-  <td><a href="getBoard.do?seq=<%=list.get(i).getSeq()%>"><%=list.get(i).getTitle()%></a></td>
-  <td><a href="getBoard.jsp?seq=<%=list.get(i).getSeq()%>"><%=list.get(i).getTitle()%></a></td>
-  <td><%=list.get(i).getWriter()%></td>
-  <td><%=list.get(i).getRegDate()%></td>
-  <td><%=list.get(i).getCnt()%></td>
-  </tr>	  
- <%}
- %> 
- --%>
+
  <c:forEach var="l" items="${boardList}"> 
  <tr>
   <td>${l.seq}</td>
@@ -66,6 +45,6 @@ List<BoardVO> list = (List)session.getAttribute("boardList");
  </c:forEach>
    </table>  
   <br>
-  <a href ="insertBoard.do">새글등록</a>
+  <a href ="insertBoard.do"><spring:message code="message.board.list.link.insertBoard"/></a>
 </body>
 </html>
