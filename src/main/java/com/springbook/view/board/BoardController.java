@@ -14,11 +14,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.springbook.biz.board.BoardListVO;
 import com.springbook.biz.board.BoardService;
 import com.springbook.biz.board.BoardVO;
 import com.springbook.biz.board.impl.BoardDAO;
@@ -39,6 +42,28 @@ public class BoardController {
 		conditionMap.put("전체", "ALL");
 		return conditionMap;
 	}
+	
+	//JSON타입 데이타 변환
+	@RequestMapping("/dataTransferJSON.do")
+	@ResponseBody
+	public List<BoardVO> dataTransferJSON(BoardVO vo){
+		vo.setSearchCondition("TITIE");
+		vo.setSearchKeyword("");
+		List<BoardVO> list = boardService.getBoardList(vo);
+		return list;
+	}
+	//JSON타입 데이타 변환
+		@RequestMapping("/dataTransferXml.do")
+		@ResponseBody
+		public BoardListVO dataTransferXml(BoardVO vo){
+			vo.setSearchCondition("TITIE");
+			vo.setSearchKeyword("");
+			List<BoardVO> list = boardService.getBoardList(vo);
+			BoardListVO boardListVO = new BoardListVO();
+			boardListVO.setBoardList(list);
+			return boardListVO;
+		}
+		
 	//글등록
 	@RequestMapping("/insertBoard.do")
 	 public String insertBoard(HttpServletRequest request) {

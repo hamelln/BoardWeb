@@ -8,7 +8,6 @@
 function myFunction(){
 	alert(document.forms[0].uploadFile.value);
 }
-
 </script>
 </head><body>
 <a href="logout.do"><spring:message code="message.user.link.logout"/></a>
