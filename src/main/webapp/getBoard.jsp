@@ -7,6 +7,7 @@
 <script type="text/javascript">
 function myFunction(){
 	alert(document.forms[0].uploadFile.value);
+	document.forms[0].span[0].innerHTML=document.forms[0].uploadFile.value; 
 }
 </script>
 </head><body>

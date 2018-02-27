@@ -67,5 +67,4 @@ public class BoardVO {
 				",content="+content+",regDate="+regDate+",cnt="+cnt+",files="+files+"]";
 	}
 	
-	
 }
