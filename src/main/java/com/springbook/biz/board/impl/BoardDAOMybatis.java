@@ -32,13 +32,16 @@ public class BoardDAOMybatis/* extends SqlSessionDaoSupport*/{
 	//글 목록 리스트
 	public List<BoardVO> getBoardList(BoardVO vo) {
 		List<BoardVO> list = new ArrayList<>();
-		if(vo.getSearchCondition().equals("TITLE"))
+		/*if(vo.getSearchCondition().equals("TITLE"))
 			list = mybatis.selectList("BoardDAO.getBoardList_T",vo);
 		else if(vo.getSearchCondition().equals("CONTENT"))
 			list = mybatis.selectList("BoardDAO.getBoardList_C",vo);
 		else 
-			list = mybatis.selectList("BoardDAO.getBoardList_A",vo);
-		return list;
+			list = mybatis.selectList("BoardDAO.getBoardList_A",vo);*/
+		
+		//Dynamic SQL 적용 후 메소드 수정  
+			list = mybatis.selectList("BoardDAO.getBoardList", vo);
+		 return list;
 	}
 	//BOARD수정
 	public void updateBoard(BoardVO vo) {
