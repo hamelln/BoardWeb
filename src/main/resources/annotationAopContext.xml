@@ -53,10 +53,16 @@
  	<property name="username" value="${jdbc.username}"/>
  	<property name="password" value="${jdbc.password}"/>
  </bean>
- <!-- Transaction 설정 -->
- <bean id="txManager" 
+ <!-- Transaction 설정  주석처리 후 JPA로 대체-->
+<!--  <bean id="txManager" 
     class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
     <property name="dataSource" ref="dataSource"></property>
+ </bean> -->
+
+<!-- JPA Tranasction 설정 -->
+ <bean id="txManager"
+    class="org.springframework.orm.jpa.JpaTransactionManager">
+    <property name="entityManagerFactory" ref="entityMangerFactory"/>
  </bean>
  
  <!-- transaction 적용시점(Advice) 설정 -->
@@ -77,6 +83,16 @@
  <!-- Spring JDBC설정 -->
  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
  	<property name="dataSource" ref="dataSource"></property>
+ </bean>
+
+ <!-- 스프링과 JPA 연동 설정 -->
+ <bean id="jpaVendorAdaptor"
+ 	  class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+ </bean>
+ <bean id="entityMangerFactory"
+       class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+       <property name="dataSource" ref="dataSource"></property>
+       <property name="jpaVendorAdapter" ref="jpaVendorAdaptor"></property>
  </bean>
 
 </beans>

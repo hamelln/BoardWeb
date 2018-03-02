@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.springbook.biz.board.impl.BoardDAO;
+import com.springbook.biz.board.impl.BoardDAOJPA;
 import com.springbook.biz.board.impl.BoardDAOMybatis;
 import com.springbook.biz.board.impl.BoardDAOSpring;
 import com.springbook.biz.board.impl.BoardDAOSpring2;
@@ -18,7 +19,8 @@ public class BoardServiceImpl implements BoardService{
 	//private BoardDAOSpring boardDao;
 	//private BoardDAOSpring2 boardDao;
 	//private BoardDAOSpringOracle boardDao;
-	private BoardDAOMybatis boardDao;
+	//private BoardDAOMybatis boardDao;
+	   private BoardDAOJPA boardDao;
 	
 	@Override
 	public void insertBoard(BoardVO vo) {
